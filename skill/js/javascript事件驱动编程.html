@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="Keywords" content="个人博客，前端开发笔记，读书笔记"/>
+  <meta name="description" content="个人博客，前端开发笔记,数据可视化,读书笔记,生活随记" />
+  <meta name="author" content="仔仔"/>
+  <title>一只贝的故事</title>
+  <link rel="shortcut icon" href="myicon.ico"/>
+
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?b108bc6bfa5605cef3cd460e3a3c8ca5";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</head>
+<body class="bg">
+  <!-- <nav class="MENU">
+    <ul>
+       <li>主页</li>
+       <li><img class=""/>笔记</li>
+       <li><img class=""/>demo</li>
+       <li><img class=""/>生活随心</li>
+       <li><img class=""/>读书笔记</li>
+    </ul>
+  </nav> -->
+<article>
+  <h2>事件驱动编程</h2>
+   <p>
+     javascript 是一门事件驱动编程语言，如果为特定事件注册了一段代码，这段代码将会在事件被触发时执行。
+   </p>
+   <p>
+     实例化一个promise对象。new
+     <code>
+     const promise = new Promise((resolve,reject)=>{
+       if(/*异步操作成功*/){
+         resolve(value);
+       }else{
+         reject(error);
+       }
+     })
+     </code>
+
+   </p>
+      <p>(
+        使用promise.prototype.then(onFulfilled,onRejected)方法来为promise对象指定已解决和被拒绝的情况下触发的回调函数。
+        <code>
+          const p2= new Promise((resolve,reject)=>{
+            resovle('成功');
+            //reject('失败');
+          })
+
+          p2.then(value=>console.log(value),reason=>console.log(reason));
+
+        </code>
+      </p>
+         <p>
+           使用promise.prototype.catch(onRecjected)只处理Promise对象被拒绝的情况
+           该方法的行为和调用和promise.prototype.then(undefined,onRejected)相同
+           <code>
+             const p1 = new Promise((resolve,reject)=>{
+               resolve('成功')
+             })
+
+             p1.then(value=>{
+               console.log(value);
+               throw '哦 ， nono';
+             }).catch(value=>console.log(value));
+           </code>
+         </p>
+            <p>
+使用静态方法promise.resolve(value)直接返回一个已解决的promise对象
+Promise.resolve('success').then(
+            value=>console.log(value),
+              (e)=>{//不会被调用 console.log(e)});
+
+
+            </p>
+               <p></p>
+                  <p></p>
+         <p></p>
+</article>
+     <footer>
+        <p>一只贝的故事@zai18_20170917</p>
+     </footer>
+  </div>
+
+  <script src='http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js'></script>
+  <script type='text/javascript' src="promise.js"></script>
+
+</body>
+</html>

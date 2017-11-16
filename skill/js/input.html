@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<style>
+html{font-size: 30px;}
+.block{width:450px;height: 300px;
+  display: flex;justify-content: space-around;
+  align-items: center;position: relative;
+  margin:40px auto;border: 1px solid #444;}
+#input{position: absolute;z-index: 99;
+top:10px;width:450px;
+left:0px;
+right: 0px;
+opacity: 0.4;
+bottom: 10px;
+
+}
+
+.block span.spans{font-size: 30px;text-align:center;width: 60px;height:60px;border: 1px solid #444;}
+span.spans.onfocus::before{
+  content: "|";
+  color: red;
+  line-height: 60px;
+  animation: show 1s infinite;
+  -webkit-animation: show 1s infinite;
+}
+
+@keyframes show {
+    0{opacity: 1;}
+    69%{opacity: 1;}
+    70%{opacity: 0;}
+    100%{opacity: 0;}
+}
+@-webkit-keyframes show {
+    0{opacity: 1;}
+    69%{opacity: 1;}
+    70%{opacity: 0;}
+    100%{opacity: 0;}
+}
+
+</style>
+<body>
+  <div class ="block">
+  <input id='input' maxlength='4'/>
+    <span class="spans"  id='on'></span>
+      <span  class="spans" id='two'></span>
+        <span  class="spans" id='three'></span>
+          <span  class="spans"  id='four'></span>
+        <div>
+          <script src='http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js'></script>
+<script>
+$('#input').focus(function(){
+    $('.spans').eq(0).addClass("onfocus")
+});
+$("#input").on("input",function(e){
+  var d = $('.spans');
+  var string = e.target.value;
+    console.log(e.target.value);
+  if(!string||string.length==0) return $('.spans').eq(0).focus();
+  console.log(e.target.value);
+  for(var i=0;i<string.length;i++){
+        d.eq(i).removeClass('onfocus');
+        d.eq(i+1).addClass("onfocus");
+        d.eq(i).html(string.charAt(i));
+  }
+
+})
+
+$("#input").on("keyup",function(e){
+
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<style>
+html{font-size: 30px;}
+.block{width:450px;height: 300px;
+  display: flex;justify-content: space-around;
+  align-items: center;position: relative;
+  margin:40px auto;border: 1px solid #444;}
+#input{position: absolute;z-index: 99;
+top:10px;width:450px;
+left:0px;
+right: 0px;
+opacity: 0.4;
+bottom: 10px;
+
+}
+
+.block span.spans{font-size: 30px;text-align:center;width: 60px;height:60px;border: 1px solid #444;}
+span.spans.onfocus::before{
+  content: "|";
+  color: red;
+  line-height: 60px;
+  animation: show 1s infinite;
+  -webkit-animation: show 1s infinite;
+}
+
+@keyframes show {
+    0{opacity: 1;}
+    69%{opacity: 1;}
+    70%{opacity: 0;}
+    100%{opacity: 0;}
+}
+@-webkit-keyframes show {
+    0{opacity: 1;}
+    69%{opacity: 1;}
+    70%{opacity: 0;}
+    100%{opacity: 0;}
+}
+
+</style>
+<body>
+  <div class ="block">
+关于高阶函数：则是可以把函数作为参数，或是将函数作为返回值的函数
+function foo(x){
+  return function(){
+    return x
+  }
+}
+
+Array 的 sort 方法 ,就是一个高阶函数，可以接受一个方法作为参数参与运算排序。
+<p>
+
+  <p>
+
+  </p>
+        <div>
+          <script src='http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js'></script>
+<script>
+function foo(x,bar){
+  return bar(x);
+}
+
+function bar(x){
+  console.log(x);
+  return x;
+}
+var points = [11,20,120,2,12,23];
+console.log(points);
+
+points.sort(function(a,b){
+  return a-b
+});
+
+console.log(points);
+
+foo('2222',bar);
+</script>
+</body>
+</html>

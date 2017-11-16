@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div id="app">
+	    <p>关于文本插值：使用双大括号{{}}</p>
+		<p v-bind:html="message"></p>
+
+        <a v-bind:title="title">{{message}}</a>
+        <button v-on:click="onclick">点我弹出</button>
+        <br/>
+        <label>name:</label>
+        <input v-model="user.name"/>
+         <label>age:</label>
+        <input v-model="user.age"/>
+        <p>user-name:{{user.name}} -- age{{user.age}}</p>
+        <h1>v-bind: --只能绑定一些DOM元素的属性吗？<h1>
+        <p>dom属性是指什么？
+          <address>
+          	HTML的全局属性 <a href='http://www.w3school.com.cn/tags/html_ref_standardattributes.asp'>http://www.w3school.com.cn/tags/html_ref_standardattributes.asp</a>
+          </address>
+        </p>
+        <ul>
+        <li>v-bind</li>
+        <li>v-if(v-else/v-else)</li>
+        
+        <li>v-on (添加事件响应 -- methods)</li>
+
+        <li>v-for</li>
+
+        <todoitem></todoitem>
+        </ul>
+
+
+        <ul><li v-for="i in even()">{{i}}</li></ul>
+        <p>
+        一个基本的vue的使用 --
+        1. 会先创建一个vue实例  --  var vm = new Vue({
+            el(创建的元素):'元素的id',
+
+        });
+        2.vue中的data 和  methods ，会添加到响应式视图中，
+        data相当于数据的初始化，
+        methods相当于对用户的行为进行响应和对数据进行操作。
+        3.关于一个组价的生命周期和钩子函数
+        new Vue({
+           created:function(){ ... }
+           mounted:function(){ ... }
+           updated:function(){ ... }
+           beforeDestroy : function(){ ... }
+        }) 
+        </p>
+	</div>
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+   Vue.component('todoitem',{
+    	template:'<li>zaizai -- list - 01</li>'
+    })
+    var app = new Vue({
+    	el:'#app',
+    	data:{
+    		title:'zai study vue 01',
+    		message:'hello ,vue ',
+    		user:{
+    			name:'',
+    			age:""
+    		}
+    	},
+    	methods:{
+    		onclick:function(){
+    			alert(this.title);
+    		},
+    		even:function(){
+    			return [1,2,4,5];
+    		}
+    	}
+    })
+
+   
+  </script>
+</body>
+</html>

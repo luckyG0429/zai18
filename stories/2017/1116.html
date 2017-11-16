@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="Keywords" content="个人博客，前端开发笔记，读书笔记"/>
+  <meta name="description" content="个人博客，前端开发笔记,数据可视化,读书笔记,生活随记" />
+  <meta name="author" content="仔仔"/>
+  <title>一只贝的故事</title>
+  <link rel="shortcut icon" href="myicon.ico">
+  <link rel="stylesheet" href="../list.css"/>
+    <link rel="stylesheet" href="../static/artical.css"/>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?b108bc6bfa5605cef3cd460e3a3c8ca5";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</head>
+<body class="bg">
+    <header></header>
+    <div>
+      <article>
+        <h1>反思：今天的工作与bug</h1>
+        <p>
+          今天上线的版本和测试版本不一样，而我的前端页面却修改的是同一套代码。可能有一种胆怯和抵触的心里吧，
+          由于不敢擅自去改动之前配置好的包，以导致，到现在，我还是在原来的代码基础上进行补丁式的开发。直到今
+          天下午测试邮件上，说：上线的部分功能。当时的自己完全是一头乱。不知道该怎么样去弄这样一个情况！
+          能做的就是新建一个分支，然后把master上的代码完全copy过去。然后再在master进行代码的回滚和检测。如果
+          修改的文件不多也还好，但由于使用的react，组件的修改极其繁琐，所以导致自己耗时两个多小时，在进行代码的回滚和文件的查找。但这只是其中的一个小bug的开始...
+        </p>
+        <p>
+          等到线上发布后，新问题又出现了，那就是：使用者必须清楚缓存才能正常使用新的功能。
+          并不是每个用户都会知道怎么去清楚浏览器的缓存的。但专门打电话给用户说：你要怎么怎么清除掉缓存。
+          但其实这个问题的解决方法是：使用nginx，重新加载配置文件：nginx -s reload  或者  kill -HUP 主进程号 。
+          <mark>【 重新加载配置文件：nginx -s reload 】
+              为了让主进程重新读取配置文件，应该向主进程发送一个HUP信号，主进程一旦接收到重新加载配置的的信号，
+          它就检查配置文件语法的有效性，然后试图应用新的配置，即打开新的日志文件和新的socket 监听，
+          如果失败，它将回滚配置更改并继续使用旧的配置，
+          如果成功了，它开启新的工作进程，并给旧的工作进程发消息让它们优雅的关闭，旧的工作进程接收到关闭信号后，不再接收新的请求，
+          如果已有请求正在处理，等当前请求处理完毕后关闭，如果没有请求正在处理，则直接关闭。</mark>
+        </p>
+        <p>
+          以上问题，在第三个问题的出现后，我才觉得自己真正有问题的地方在哪里。
+          回到家之后，公司的群里在@我，问题是：微信没有流水账号的输入，只有支付宝和对公转账才有。
+          打开自己的代码，看代码。然后翻到历史版本的记录，才发现：自己在最新的那一版里面，进行了删除。并且在自己毫无感知的情况下。
+          我想了很久，面对着屏幕，在想：为什么会出现这样的问题，为什么就没有发觉自己去掉的竟然是一个大的功能点。
+          .........
+        </p>
+       <p>
+         回想了一下，近几个月来做的事情，我问了自己一个问题：如果是你，你去看一段没有说明，也没有解释的代码的时候会不会头大吗？
+         而且关键是，你的代码都还是组件引入的形式，如果有一天，你要和别人配合，别人去看你的代码，我想别人也是一脸的不情愿。
+         因为你的代码，组件化不说，而且全是代码块。没有一点有用的解释说明，你当前的模块是做什么的，有哪些方法和功能点。以及规则，
+         在这样的情况下，我想自己都能把自己之前写的功能点忽略掉，更别说和别人了。任何一个人交流起来，都很费劲，
+         所以，为了你自己的工作效率和代码质量，我希望在未来的工作中，可以做到以下几点：
+
+       </p>
+       <ul>
+          <li>请在写一个组件前，明确写出：该组件是什么，有什么功能。</li>
+          <li>作为组件，可能会有从父级传来的值和字段名。如果有，请必写。</li>
+          <li>组件的导出是什么样子，可进行那些用户操作。操作列表以及用户操作时用到的函数名。</li>
+          <li>如果组件有所更新，请在组件的说明中：添加时间和添加的功能。</li>
+       </ul>
+       <pre>
+         <code>
+  /*
+       组件名称：放款管理—列表显示,
+       父级传值：params = {searchParam:json},data=record
+       组件展示：1.list --  fetch()
+               2.查看详情 -- showDetail()
+       更新： 11-02 新增字段
+ */
+       </code>
+       </pre>
+
+       <p>
+         以上的这些工作中，要一一的实行，这样做，既可以帮自己搞清楚思路，也可以更加方便的进行迭代开发和重构。
+       </p>
+       <i class='acticlebot'>————写于2017-11-17 00:15晚</i>
+      </article>
+    </div>
+     <footer>
+        <p>一只贝的故事@zai18_20170917</p>
+     </footer>
+  </div>
+        <!-- <h2>勿忘初心<h2> -->
+  <script src='http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js'></script>
+    <script type='text/javascript' src="../index/js/common.js"></script>
+
+</body>
+</html>

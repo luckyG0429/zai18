@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+	.active{color:red;}
+	</style>
+</head>
+<body>
+	<div id="app">
+       <input v-model="question"/>
+       <hr/>
+       <p>{{answer}}</p>
+       <hr/>
+       <label>添加事件：</label>
+       <input v-model='message'/>
+       <button v-on:click='addList'>add-list</button>
+       <hr/>
+       <ul>
+       	<li v-for="(item ,key) in list" 
+       	 is='todo-item'
+       	 v-bind:title='item.title'
+       	 v-bind:key='key'></li>
+       </ul>
+
+       <p v-bind:class="{active:keyIndex}">sdsdsd</p>
+       <p class="active">{{keyIndex}}</p>
+	</div>
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+     Vue.component('todo-item',{
+     	props:['title'],
+    	template:'\
+    	<li>\
+    	<mark>{{title}}</mark>\
+    	<button>del</button></li>'
+    })
+    var app = new Vue({
+    	el:'#app',
+    	data:{
+    		question:"",
+    		answer:'请输入您的问题',
+    		message:'',
+    		keyIndex:false,
+    		list:[
+    		{
+    			title:'write code',
+    			key:1
+    		},
+    		{
+    			title:'reading book',
+    			key:3
+    		}
+    		]
+    	},
+    	watch:{
+    		question:function(newquestion){
+
+    		}
+    	},
+    	mounted:function(){
+    		var me =this;
+    	    setInterval(function(){
+	    			me.setK()
+	    		},1000)
+    	
+    		},
+    	methods:{
+    		getAnswer(){
+               var reg = /\d\?$/g;
+    		},
+    		addList(){
+    			this.list.push({
+    				title:this.message,
+    				key:this.list.lenght
+    			});
+    			this.message=''
+    		},
+    		updated:function(){
+    			
+    		},
+    		setK(){
+    			this.keyIndex = !this.keyIndex
+    		}
+
+    	}
+    })
+
+   
+  </script>
+</body>
+</html>
