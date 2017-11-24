@@ -150,8 +150,14 @@ ul,li{margin: 0 0;padding: 0 0};
   display: none;
 	content: 'by ';
 }
+.menu_ul figure a{
+    outline: 0;
+    display: block;
+}
 
-.menu_ul figcaption a {
+
+.menu_ul figcaption b {
+
 	text-align: center;
 	padding: 5px 10px;
 	border-radius:10px 0 10px 0 ;
