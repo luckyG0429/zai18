@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>伪元素</title>
+    <style>
+        *{
+            color: #666;
+        }
+        .title{
+        /* border: 1px solid #aaa;*/
+            height: 48px;
+            line-height: 48px;
+            position: relative;
+
+            text-align: center;
+        }
+        h4.title::before,  h4.title::after{
+            content: " ";
+            display: inline-block;
+            vertical-align:middle;/*关于行内元素自身相对于父元素本身的垂直对其方式*/
+            width:40vw;
+            height: 1px;
+            margin: 0 10px;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <h1>伪元素</h1>
+        <p>在css中目前存在的伪元素有：</p>
+        <ul>
+            <li>::before</li>
+            <li>::after</li>
+            <li>::first-line</li>
+            <li>::first-letter</li>
+            <li>::selection</li>
+        </ul>
+        <div>
+            <p>如下是为标题左右添加中间分割线</p>
+            <h4 class="title">这是一个标题</h4>
+        </div>
+        <div>
+            <p>首字母下沉的效果</p>
+            <p class="magezineDown">
+
+            </p>
+        </div>
+        <div>
+            <p>首字母放大的效果</p>
+            <p class="magezineUp">
+
+            </p>
+        </div>
+
+        <div>
+            <p>首行文字加粗的效果</p>
+            <p class="magezineLine">
+
+            </p>
+        </div>
+    </article>
+</body>
+</html>

@@ -12,6 +12,13 @@ h1{
   color:#AD48A3
 }
 article p{text-align: left;text-indent: 2rem;}
+
+article * {
+  -webkit-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
 article mark{display: inline-block;box-sizing: border-box;
   padding:5px 10px;color:#333;
   background:#FFBAF7;border-left: 3px solid #B04BA5;margin-top: 10px;margin-bottom: 10px;}

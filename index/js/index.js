@@ -22,11 +22,11 @@ function autoType(elementClass, typingSpeed){
         },i*typingSpeed);
       })(i+1,text[i]);
     }
-  },1000);
+  },100);
 }
 
 $(document).ready(function(){
-   autoType(".type-js",200);
+  // autoType(".type-js",200);
 
     if (!window.AudioContext) {
         alert('当前浏览器不支持Web Audio API');
